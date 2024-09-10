@@ -9,6 +9,15 @@ CRIO_VERSION=v1.30
 # Turn off swap setting
 sudo swapoff -a
 
+# sysctl params required by setup, params persist across reboots
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.ipv4.ip_forward = 1
+EOF
+
+# Apply sysctl params without reboot
+sudo sysctl --system
+
+
 # Install dependencies
 sudo apt-get update
 sudo apt-get install -y software-properties-common curl
@@ -40,6 +49,15 @@ sudo modprobe br_netfilter
 sudo sysctl -w net.ipv4.ip_forward=1
 
 sudo kubeadm init
+
+#cgroup driver
+[crio.runtime]
+conmon_cgroup = "pod"
+cgroup_manager = "cgroupfs"
+ 
+[crio.image]
+pause_image="registry.k8s.io/pause:3.6"
+
 
 # Final setup for Kubernetes
 sudo apt-get update
