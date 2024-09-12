@@ -52,12 +52,12 @@ sudo kubeadm init --apiserver-advertise-address=192.168.29.126 --pod-network-cid
 
 
 #cgroup driver
-[crio.runtime]
-conmon_cgroup = "pod"
-cgroup_manager = "cgroupfs"
+#[crio.runtime]
+#conmon_cgroup = "pod"
+#cgroup_manager = "cgroupfs"
  
-[crio.image]
-pause_image="registry.k8s.io/pause:3.6"
+#[crio.image]
+#pause_image="registry.k8s.io/pause:3.6"
 
 
 # Final setup for Kubernetes
