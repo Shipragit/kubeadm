@@ -48,8 +48,6 @@ sudo swapoff -a
 sudo modprobe br_netfilter
 sudo sysctl -w net.ipv4.ip_forward=1
 
-sudo kubeadm init --apiserver-advertise-address=192.168.29.126 --pod-network-cidr=10.10.0.0/16 --v=5
-
 
 #cgroup driver
 #[crio.runtime]
@@ -75,4 +73,6 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
 sudo systemctl enable --now kubelet
+
+sudo kubeadm init --apiserver-advertise-address=192.168.29.126 --pod-network-cidr=10.10.0.0/16 --v=5
 
