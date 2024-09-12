@@ -19,7 +19,7 @@ sudo sysctl --system
 
 
 # Install dependencies
-sudo apt-get update
+#sudo apt-get update
 sudo apt-get install -y software-properties-common curl
 
 # Add the Kubernetes repository
@@ -37,7 +37,7 @@ echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.i
     sudo tee /etc/apt/sources.list.d/cri-o.list
 
 # Install the packages
-sudo apt-get update
+#sudo apt-get update
 sudo apt-get install -y cri-o kubelet kubeadm kubectl
 
 # Start CRI-O
@@ -60,7 +60,7 @@ pause_image="registry.k8s.io/pause:3.6"
 
 
 # Final setup for Kubernetes
-sudo apt-get update
+#sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl gpg
 
 # Add the Kubernetes repository key again if necessary
@@ -69,7 +69,7 @@ curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | sudo gpg --
 # This overwrites any existing configuration in /etc/apt/sources.list.d/kubernetes.list
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
-sudo apt-get update
+#sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
