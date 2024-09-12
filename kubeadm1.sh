@@ -74,5 +74,5 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 sudo systemctl enable --now kubelet
 
-sudo kubeadm init --apiserver-advertise-address=192.168.29.126 --pod-network-cidr=10.10.0.0/16 --v=5
+
 
