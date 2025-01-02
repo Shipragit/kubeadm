@@ -63,6 +63,7 @@ sudo sysctl -w net.ipv4.ip_forward=1
 sudo apt-get install -y apt-transport-https ca-certificates curl gpg
 
 # Add the Kubernetes repository key again if necessary
+sudo mkdir -p -m 755 /etc/apt/keyrings
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
 # This overwrites any existing configuration in /etc/apt/sources.list.d/kubernetes.list
