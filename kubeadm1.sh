@@ -3,8 +3,8 @@
 
 set -euxo pipefail
 
-KUBERNETES_VERSION=v1.31
-CRIO_VERSION=v1.30
+KUBERNETES_VERSION=v1.32
+CRIO_VERSION=v1.32
 
 # Turn off swap setting
 sudo swapoff -a
@@ -19,8 +19,8 @@ sudo sysctl --system
 
 
 # Install dependencies
-#sudo apt-get update
-sudo apt-get install -y software-properties-common curl
+apt-get update
+apt-get install -y software-properties-common curl
 
 # Add the Kubernetes repository
 curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key |
@@ -59,7 +59,7 @@ sudo sysctl -w net.ipv4.ip_forward=1
 
 
 # Final setup for Kubernetes
-#sudo apt-get update
+sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl gpg
 
 # Add the Kubernetes repository key again if necessary
