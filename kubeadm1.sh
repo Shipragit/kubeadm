@@ -9,7 +9,7 @@ CRIO_VERSION=v1.30
 # Turn off swap setting
 sudo swapoff -a
 
-# sysctl params required by setup, params persist across reboots
+# Enable IPv4 packet forwarding
 cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.ipv4.ip_forward = 1
 EOF
@@ -24,17 +24,17 @@ sudo apt-get install -y software-properties-common curl
 
 # Add the Kubernetes repository
 curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key |
-    gpg --dearmor | sudo tee /etc/apt/keyrings/kubernetes-apt-keyring.gpg > /dev/null
+    gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/ /" |
-    sudo tee /etc/apt/sources.list.d/kubernetes.list
+    tee /etc/apt/sources.list.d/kubernetes.list
 
 # Add the CRI-O repository
 curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/deb/Release.key |
-    gpg --dearmor | sudo tee /etc/apt/keyrings/cri-o-apt-keyring.gpg > /dev/null
+    gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
 
 echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/deb/ /" |
-    sudo tee /etc/apt/sources.list.d/cri-o.list
+    tee /etc/apt/sources.list.d/cri-o.list
 
 # Install the packages
 #sudo apt-get update
