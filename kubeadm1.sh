@@ -19,8 +19,8 @@ sudo sysctl --system
 
 
 # Install dependencies
-apt-get update
-apt-get install -y software-properties-common curl
+sudo apt-get update
+sudo apt-get install -y software-properties-common curl
 
 # Add the Kubernetes repository
 curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key |
